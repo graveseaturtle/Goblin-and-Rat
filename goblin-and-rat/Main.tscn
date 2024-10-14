@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://e8xspkkab6h7"]
+
+[ext_resource type="PackedScene" uid="uid://c0s6rkewkt04i" path="res://Rat.tscn" id="1_b2tsn"]
+[ext_resource type="PackedScene" uid="uid://dcktfrstxdscw" path="res://Goblin.tscn" id="2_2e1dm"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_gevmh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gm4b5"]
+size = Vector2(570.492, 135)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+position = Vector2(593, 631)
+scale = Vector2(1186, -33)
+mesh = SubResource("BoxMesh_gevmh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MeshInstance2D"]
+position = Vector2(-0.0117462, 0.021739)
+scale = Vector2(0.00170068, 0.00757576)
+shape = SubResource("RectangleShape2D_gm4b5")
+
+[node name="GoblinNode" parent="." instance=ExtResource("2_2e1dm")]
+
+[node name="RatNode" parent="." instance=ExtResource("1_b2tsn")]

@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://c0s6rkewkt04i"]
+
+[ext_resource type="Texture2D" uid="uid://2rxuvswtqfn8" path="res://icon.svg" id="1_71sk4"]
+
+[node name="RatNode" type="Node2D"]
+
+[node name="RatThing" type="CharacterBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RatThing"]
+
+[node name="Icon" type="Sprite2D" parent="RatThing"]
+position = Vector2(454.5, 185.5)
+scale = Vector2(0.460938, 0.398438)
+texture = ExtResource("1_71sk4")
