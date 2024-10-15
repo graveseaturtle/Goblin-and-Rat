@@ -5,8 +5,8 @@
 
 [sub_resource type="BoxMesh" id="BoxMesh_gevmh"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gm4b5"]
-size = Vector2(570.492, 135)
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_a4lu7"]
+distance = -177.13
 
 [node name="Node2D" type="Node2D"]
 
@@ -16,10 +16,15 @@ scale = Vector2(1186, -33)
 mesh = SubResource("BoxMesh_gevmh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MeshInstance2D"]
-position = Vector2(-0.0117462, 0.021739)
+position = Vector2(-0.0126476, 0.333333)
 scale = Vector2(0.00170068, 0.00757576)
-shape = SubResource("RectangleShape2D_gm4b5")
+shape = SubResource("WorldBoundaryShape2D_a4lu7")
 
 [node name="GoblinNode" parent="." instance=ExtResource("2_2e1dm")]
+visible = false
 
 [node name="RatNode" parent="." instance=ExtResource("1_b2tsn")]
+visible = false
+
+[node name="Rat" parent="." instance=ExtResource("1_b2tsn")]
+position = Vector2(500, 548)

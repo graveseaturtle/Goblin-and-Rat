@@ -1,3 +1,25 @@
-[gd_scene format=3 uid="uid://dcktfrstxdscw"]
+[gd_scene load_steps=4 format=3 uid="uid://dcktfrstxdscw"]
 
-[node name="Goblin" type="Node2D"]
+[ext_resource type="Texture2D" uid="uid://b1ivfjfj0b1pb" path="res://assets/temporary/GoblinTemp.png" id="1_aohfd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dus5t"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n7kyq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_aohfd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Goblin" type="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_dus5t")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_n7kyq")
+autoplay = "default"
