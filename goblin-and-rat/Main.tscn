@@ -1,14 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://e8xspkkab6h7"]
+[gd_scene load_steps=4 format=3 uid="uid://e8xspkkab6h7"]
 
 [ext_resource type="PackedScene" uid="uid://c0s6rkewkt04i" path="res://Rat.tscn" id="1_b2tsn"]
-[ext_resource type="PackedScene" uid="uid://bxxeqbyjshjqr" path="res://Goblin.tscn" id="2_2e1dm"]
-[ext_resource type="PackedScene" uid="uid://bxxeqbyjshjqr" path="res://goblin.tscn" id="2_gmmwg"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_gevmh"]
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_a4lu7"]
-normal = Vector2(-0.00323738, 0.999995)
-distance = -1100.0
+[ext_resource type="PackedScene" uid="uid://bxxeqbyjshjqr" path="res://Goblin.tscn" id="2_gmmwg"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_uniix"]
 
@@ -16,22 +9,6 @@ distance = -1100.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(4, 4)
-
-[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
-visible = false
-position = Vector2(593, 631)
-scale = Vector2(1186, -33)
-mesh = SubResource("BoxMesh_gevmh")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="MeshInstance2D"]
-visible = false
-position = Vector2(-0.0126476, 0.333333)
-scale = Vector2(0.00170068, 0.00757576)
-shape = SubResource("WorldBoundaryShape2D_a4lu7")
-
-[node name="GoblinNode" parent="." instance=ExtResource("2_2e1dm")]
-visible = false
-script = null
 
 [node name="Goblin" parent="." instance=ExtResource("2_gmmwg")]
 position = Vector2(-37, -18)
