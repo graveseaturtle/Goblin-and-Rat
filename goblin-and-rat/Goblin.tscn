@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://dcktfrstxdscw"]
+[gd_scene load_steps=5 format=3 uid="uid://bxxeqbyjshjqr"]
 
 [ext_resource type="Texture2D" uid="uid://b1ivfjfj0b1pb" path="res://assets/temporary/GoblinTemp.png" id="1_aohfd"]
+[ext_resource type="Script" path="res://scripts/GoblinScript.gd" id="1_jpth2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dus5t"]
+size = Vector2(12, 28)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_n7kyq"]
 animations = [{
@@ -16,6 +18,7 @@ animations = [{
 }]
 
 [node name="Goblin" type="CharacterBody2D"]
+script = ExtResource("1_jpth2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_dus5t")

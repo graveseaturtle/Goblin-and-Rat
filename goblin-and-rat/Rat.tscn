@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://c0s6rkewkt04i"]
+[gd_scene load_steps=5 format=3 uid="uid://c0s6rkewkt04i"]
 
+[ext_resource type="Script" path="res://RatScript.gd" id="1_j3a1l"]
 [ext_resource type="Texture2D" uid="uid://dal5shawmfo31" path="res://assets/temporary/RatTemp.png" id="1_k8woi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jam4w"]
@@ -17,6 +18,7 @@ animations = [{
 }]
 
 [node name="Rat" type="CharacterBody2D"]
+script = ExtResource("1_j3a1l")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_jam4w")
