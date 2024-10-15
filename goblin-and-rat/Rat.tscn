@@ -1,14 +1,28 @@
-[gd_scene load_steps=2 format=3 uid="uid://c0s6rkewkt04i"]
+[gd_scene load_steps=5 format=3 uid="uid://c0s6rkewkt04i"]
 
-[ext_resource type="Texture2D" uid="uid://2rxuvswtqfn8" path="res://icon.svg" id="1_71sk4"]
+[ext_resource type="Texture2D" uid="uid://dal5shawmfo31" path="res://assets/temporary/RatTemp.png" id="1_k8woi"]
+[ext_resource type="Script" path="res://character_body_2d.gd" id="2_cjx8r"]
 
-[node name="RatNode" type="Node2D"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_5pfld"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_k8woi")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
-[node name="RatThing" type="CharacterBody2D" parent="."]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jam4w"]
+size = Vector2(14, 14)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RatThing"]
+[node name="Rat" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_5pfld")
+autoplay = "default"
 
-[node name="Icon" type="Sprite2D" parent="RatThing"]
-position = Vector2(454.5, 185.5)
-scale = Vector2(0.460938, 0.398438)
-texture = ExtResource("1_71sk4")
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+script = ExtResource("2_cjx8r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("RectangleShape2D_jam4w")
