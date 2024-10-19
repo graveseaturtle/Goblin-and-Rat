@@ -1,10 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bxxeqbyjshjqr"]
+[gd_scene load_steps=6 format=3 uid="uid://bxxeqbyjshjqr"]
 
 [ext_resource type="Texture2D" uid="uid://b1ivfjfj0b1pb" path="res://assets/temporary/GoblinTemp.png" id="1_aohfd"]
 [ext_resource type="Script" path="res://scripts/GoblinScript.gd" id="1_jpth2"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_dus5t"]
-size = Vector2(12, 28)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_n7kyq"]
 animations = [{
@@ -17,12 +14,25 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dus5t"]
+size = Vector2(12, 28)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lc3bu"]
+size = Vector2(32, 30)
+
 [node name="Goblin" type="CharacterBody2D"]
 script = ExtResource("1_jpth2")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_dus5t")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_n7kyq")
 autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_dus5t")
+
+[node name="Picky uppy area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Picky uppy area"]
+shape = SubResource("RectangleShape2D_lc3bu")
+
+[connection signal="child_entered_tree" from="CollisionShape2D" to="." method="_on_collision_shape_2d_child_entered_tree"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://e8xspkkab6h7"]
 
 [ext_resource type="PackedScene" uid="uid://c0s6rkewkt04i" path="res://Rat.tscn" id="1_b2tsn"]
-[ext_resource type="PackedScene" uid="uid://bxxeqbyjshjqr" path="res://Goblin.tscn" id="2_gmmwg"]
+[ext_resource type="PackedScene" uid="uid://bxxeqbyjshjqr" path="res://goblin.tscn" id="2_gmmwg"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_uniix"]
 
