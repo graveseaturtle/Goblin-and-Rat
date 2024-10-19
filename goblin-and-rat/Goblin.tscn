@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bxxeqbyjshjqr"]
+[gd_scene load_steps=9 format=3 uid="uid://bxxeqbyjshjqr"]
 
 [ext_resource type="Texture2D" uid="uid://b1ivfjfj0b1pb" path="res://assets/temporary/GoblinTemp.png" id="1_aohfd"]
 [ext_resource type="Script" path="res://scripts/GoblinScript.gd" id="1_jpth2"]
 [ext_resource type="Texture2D" uid="uid://bwdjiu0cqhfgy" path="res://assets/temporary/CarryingTemp.png" id="2_gvrx8"]
+[ext_resource type="Texture2D" uid="uid://bp1y0fgbsaeas" path="res://assets/temporary/ChargingTemplate.png" id="3_6bbh0"]
+[ext_resource type="Texture2D" uid="uid://c4c2lrktn7cua" path="res://assets/temporary/throwing.png" id="5_vxn8g"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_n7kyq"]
 animations = [{
@@ -16,10 +18,26 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("3_6bbh0")
+}],
+"loop": true,
+"name": &"charging",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("1_aohfd")
 }],
 "loop": true,
 "name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_vxn8g")
+}],
+"loop": true,
+"name": &"throwing",
 "speed": 5.0
 }]
 
@@ -34,6 +52,7 @@ script = ExtResource("1_jpth2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_n7kyq")
+animation = &"throwing"
 autoplay = "default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -43,5 +62,8 @@ shape = SubResource("RectangleShape2D_dus5t")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Picky uppy area"]
 shape = SubResource("RectangleShape2D_lc3bu")
+
+[node name="AimLine" type="Line2D" parent="."]
+default_color = Color(0, 0, 0, 1)
 
 [connection signal="child_entered_tree" from="CollisionShape2D" to="." method="_on_collision_shape_2d_child_entered_tree"]
