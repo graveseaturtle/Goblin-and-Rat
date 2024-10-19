@@ -1,10 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://bxxeqbyjshjqr"]
+[gd_scene load_steps=7 format=3 uid="uid://bxxeqbyjshjqr"]
 
 [ext_resource type="Texture2D" uid="uid://b1ivfjfj0b1pb" path="res://assets/temporary/GoblinTemp.png" id="1_aohfd"]
 [ext_resource type="Script" path="res://scripts/GoblinScript.gd" id="1_jpth2"]
+[ext_resource type="Texture2D" uid="uid://bwdjiu0cqhfgy" path="res://assets/temporary/CarryingTemp.png" id="2_gvrx8"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_n7kyq"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_gvrx8")
+}],
+"loop": true,
+"name": &"carrying",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("1_aohfd")

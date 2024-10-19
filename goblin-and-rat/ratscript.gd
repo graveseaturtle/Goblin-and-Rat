@@ -21,5 +21,9 @@ func _physics_process(delta: float) -> void:
 		velocity.x = direction * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
-
 	move_and_slide()
+func disable_collision():
+	collision_shape_2d.disabled = true
+func enable_collision():
+	collision_shape_2d.disabled = false
+	

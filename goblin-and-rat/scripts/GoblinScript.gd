@@ -1,9 +1,10 @@
 extends CharacterBody2D
 
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
 const SPEED = 150.0
 const JUMP_VELOCITY = -200.0
-const PICKUP_DISTANCE = 50
+const PICKUP_DISTANCE = 30
 
 var holding_rat = false
 var rat_node = null
@@ -35,12 +36,16 @@ func _physics_process(delta: float) -> void:
 		if pickup_able and Input.is_action_just_pressed("GoblinAction"):
 			holding_rat = true
 			rat_node.visible = false
+			rat_node.disable_collision()
 			print("rat aquired")
+			animated_sprite_2d.play("carrying")
 	elif holding_rat and Input.is_action_just_released("GoblinAction"):
 		holding_rat = false
 		rat_node.position = position + Vector2(20, 0)
 		rat_node.visible = true
+		rat_node.enable_collision()
 		print("rat lost :(")
+		animated_sprite_2d.play("default")
 		
 	
  
