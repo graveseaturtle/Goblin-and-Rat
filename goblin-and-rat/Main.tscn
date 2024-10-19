@@ -17,8 +17,9 @@ position = Vector2(-37, -18)
 position = Vector2(34, -10)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(0, 28)
+position = Vector2(-1, -53)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(0, 53)
 shape = SubResource("WorldBoundaryShape2D_uniix")
+debug_color = Color(0.877324, 0.239484, 0.616342, 0.42)

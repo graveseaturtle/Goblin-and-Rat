@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 const SPEED = 150.0
 const JUMP_VELOCITY = -200.0
+const GRAVITY = 98.0
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 
 func _physics_process(delta: float) -> void:
@@ -10,7 +11,7 @@ func _physics_process(delta: float) -> void:
 
 	# Add the gravity.
 	if not is_on_floor():
-		velocity += get_gravity() * delta
+		velocity.y += GRAVITY * delta
 
 	# Handle jump.
 	if Input.is_action_just_pressed("RatJump") and is_on_floor():

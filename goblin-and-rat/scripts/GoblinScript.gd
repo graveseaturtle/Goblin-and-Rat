@@ -6,8 +6,8 @@ extends CharacterBody2D
 const SPEED = 150.0
 const JUMP_VELOCITY = -200.0
 const PICKUP_DISTANCE = 30
-const MaxThrowForce = 100
-const ThrowChargeRate = 25
+const MaxThrowForce = 200
+const ThrowChargeRate = 35
 
 var holding_rat = false
 var rat_node = null
@@ -16,8 +16,7 @@ var throw_force = 0.0
 var charging_throw = false
 
 func _ready():
-	rat_node = get_parent().get_node("Rat")  # Rat is still a sibling under the same parent
-
+	rat_node = get_parent().get_node("Rat")
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
@@ -45,7 +44,7 @@ func _physics_process(delta: float) -> void:
 			rat_node.disable_collision()
 			print("rat acquired")
 			animated_sprite_2d.play("carrying")
-	elif holding_rat and Input.is_action_just_released("GoblinAction"):
+	elif holding_rat and Input.is_action_just_pressed("GoblinAction"):
 		holding_rat = false
 		rat_node.position = position + Vector2(20, 0)
 		rat_node.visible = true
@@ -61,38 +60,55 @@ func _physics_process(delta: float) -> void:
 			throw_force = throw_force + ThrowChargeRate * delta
 			if throw_force >= MaxThrowForce:
 				throw_force = MaxThrowForce
-			print (throw_force)
+			#print (throw_force)
 			update_aim_line()
 			animated_sprite_2d.play("charging")
 		elif charging_throw and Input.is_action_just_released("Throw"):
 			charging_throw = false
 			holding_rat = false
-			throw_force = throw_force - ThrowChargeRate * delta
-			if throw_force <= 0:
-				aim_line.set_visible(false)
 			animated_sprite_2d.play("throwing")
+			throw_rat()
 			update_aim_line()
-			
-#im kinda clueless on this shit, chatty g 'helped' write it and i think it calculates gravity then draws a line based on that gravity for the rat to follow
+	if not holding_rat and not Input.is_action_just_pressed("Throw"):
+		throw_force = max(0, throw_force - ThrowChargeRate * delta)
+		update_aim_line()
+		if throw_force > 0: # just used to see throw force number go buur
+			pass
+			#print(throw_force)
+		if throw_force <= 0:
+			aim_line.set_visible(false)
+			throw_force = 0
+
+#Attempt #2 at aim line using youtube tutorial
 func update_aim_line():
-	var points = []
-	var initial_position = position
-	var initial_velocity = Vector2(throw_force, -throw_force * 0.5)
-	var gravity = 98.0
-	var num_points = 20
-	var time_step = 0.1
-	aim_line.set_visible(true)
-	for i in range(num_points):  # Calculates gravity and draws points along the trajectory
+	var aim_angle = -30.0
+	var angle_radians = deg_to_rad(aim_angle)
+	
+	var initial_velocity = Vector2(
+		throw_force * cos(angle_radians), # horizontal velocity
+		throw_force * sin(angle_radians) # vertical velocity
+	)
+	
+	#clears points
+	aim_line.clear_points()
+	var start_position = Vector2(0,0)
+	
+	var num_points = 50 #how many points it draws
+	var time_step = 0.15
+	
+	for i in range(num_points):
 		var t = i * time_step
-		var pos = initial_position + initial_velocity * t + Vector2(0, 0.5 * gravity * t * t)
-		points.append(pos)
-	aim_line.points = points  # Set points directly
+		var position_x = start_position.x + initial_velocity.x * t
+		var position_y = start_position.y + initial_velocity.y * t + (0.5 * 98.0 * t * t)
+		
+		aim_line.add_point(Vector2(position_x, position_y))
+	
 	
 
 # Apply the throw to the rat
 func throw_rat():
 	rat_node.visible = true
-	rat_node.position = position
 	rat_node.enable_collision()
-	rat_node.velocity = Vector2(throw_force, -throw_force * 0.5)
+	rat_node.velocity = Vector2(throw_force, -throw_force * 0.5)  # Apply horizontal and vertical velocity
 	animated_sprite_2d.play("default")
+	aim_line.set_visible(false)

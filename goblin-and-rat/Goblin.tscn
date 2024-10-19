@@ -35,10 +35,13 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("5_vxn8g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_aohfd")
 }],
 "loop": true,
 "name": &"throwing",
-"speed": 5.0
+"speed": 1.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dus5t"]
@@ -52,7 +55,6 @@ script = ExtResource("1_jpth2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_n7kyq")
-animation = &"throwing"
 autoplay = "default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -64,6 +66,8 @@ shape = SubResource("RectangleShape2D_dus5t")
 shape = SubResource("RectangleShape2D_lc3bu")
 
 [node name="AimLine" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0)
+width = 5.0
 default_color = Color(0, 0, 0, 1)
 
 [connection signal="child_entered_tree" from="CollisionShape2D" to="." method="_on_collision_shape_2d_child_entered_tree"]
