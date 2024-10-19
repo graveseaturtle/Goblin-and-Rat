@@ -32,15 +32,15 @@ func _physics_process(delta: float) -> void:
 	if rat_node and not holding_rat:
 		var distance_to_rat = position.distance_to(rat_node.position)
 		pickup_able = distance_to_rat <= PICKUP_DISTANCE
-		if pickup_able and Input.is_action_pressed("GoblinAction"):
+		if pickup_able and Input.is_action_just_pressed("GoblinAction"):
 			holding_rat = true
 			rat_node.visible = false
 			print("rat aquired")
-		elif holding_rat and Input.is_action_just_released("GoblinAction"):
-			holding_rat = false
-			rat_node.position = position + Vector2(20, 0)
-			rat_node.visible = true
-			print("rat lost :(")
+	elif holding_rat and Input.is_action_just_released("GoblinAction"):
+		holding_rat = false
+		rat_node.position = position + Vector2(20, 0)
+		rat_node.visible = true
+		print("rat lost :(")
 		
 	
  
